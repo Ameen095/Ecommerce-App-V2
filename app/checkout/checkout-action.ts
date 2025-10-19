@@ -10,6 +10,7 @@ export const checkoutAction = async (formData: FormData): Promise<void> => {
   const line_items = items.map((item: CartItem) => ({
     price_data: {
       currency: "cad",
+      currency: "EUR",
       product_data: { name: item.name },
       unit_amount: item.price,
     },
@@ -20,8 +21,8 @@ export const checkoutAction = async (formData: FormData): Promise<void> => {
     payment_method_types: ["card"],
     line_items,
     mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
+    success_url: `€{process.env.NEXT_PUBLIC_BASE_URL}/success`,
+    cancel_url: `€{process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
   });
 
   redirect(session.url!);
